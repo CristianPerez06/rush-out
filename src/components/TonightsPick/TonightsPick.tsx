@@ -78,7 +78,6 @@ const TonightsPick = ({
             gridTemplateRows: 'max-content',
             alignItems: 'start',
             justifyItems: 'start',
-            marginLeft: '30.17px',
             marginTop: 0,
             position: 'relative',
             gridRow: 1,
@@ -89,7 +88,6 @@ const TonightsPick = ({
             style={{
               gridColumn: 1,
               height: '363.808px',
-              marginLeft: '8.35px',
               marginTop: 0,
               position: 'relative',
               gridRow: 1,
@@ -135,7 +133,6 @@ const TonightsPick = ({
           <div
             style={{
               gridColumn: 1,
-              marginLeft: '268.52px',
               marginTop: '271.13px',
               position: 'relative',
               gridRow: 1,
@@ -163,7 +160,6 @@ const TonightsPick = ({
               gap: '9.914px',
               height: '237.537px',
               alignItems: 'center',
-              marginLeft: '19.19px',
               marginTop: '13.66px',
               position: 'relative',
               borderRadius: '18.21px',

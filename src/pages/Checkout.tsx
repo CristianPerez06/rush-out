@@ -70,7 +70,10 @@ const Checkout = () => {
             </p>
           </div>
 
-          <button className="bg-white text-black px-6 py-3 uppercase font-medium">
+          <button
+            onClick={() => navigate('/success')}
+            className="bg-white text-black px-6 py-3 uppercase font-medium"
+          >
             Confirm
           </button>
         </div>

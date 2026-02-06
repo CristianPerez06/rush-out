@@ -252,7 +252,7 @@ export const EventCard = ({ event }: { event: Event }) => {
             </p>
           </div>
           <button
-            onClick={() => navigate(`/checkout/${event.id}`)}
+            onClick={() => navigate(`/event/${event.id}`)}
             style={{
               display: 'flex',
               flexDirection: 'row',

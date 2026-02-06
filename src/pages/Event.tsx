@@ -1,6 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
 import { mockEvents } from '../data/events'
 
+const getDurationMinutes = (start: string, end: string) => {
+  const [sh, sm] = start.split(':').map(Number)
+  const [eh, em] = end.split(':').map(Number)
+  return eh * 60 + em - (sh * 60 + sm)
+}
+
 const Event = () => {
   const { id } = useParams<{ id: string }>()
   const event = mockEvents.find(e => e.id === id)
@@ -16,113 +22,151 @@ const Event = () => {
     )
   }
 
-  const soldPercent = Math.round(
-    (event.sold_tickets / event.total_tickets) * 100
-  )
   const available = event.total_tickets - event.sold_tickets
+  const duration = getDurationMinutes(event.starts_at, event.ends_at)
 
   return (
-    <div className="min-h-screen bg-black px-4 py-12 text-white">
-      <div className="mx-auto max-w-2xl">
-        <Link to="/" className="mb-8 inline-block text-sm text-gray-400 hover:text-white">
-          &larr; Back to Events
-        </Link>
-
-        <img
-          src={event.event_image}
-          alt={event.event_title}
-          className="mb-6 h-64 w-full rounded-xl object-cover"
-        />
-
-        <div className="mb-4 flex flex-wrap gap-2">
-          <span className="rounded-full bg-gray-800 px-3 py-1 text-xs">
-            {event.category}
-          </span>
-          {event.highlighted_tags.map(tag => (
-            <span
-              key={tag}
-              className="rounded-full bg-purple-900 px-3 py-1 text-xs text-purple-200"
+    <div className="min-h-screen bg-black text-white flex flex-col justify-between">
+      <div>
+        {/* Hero Image */}
+        <div className="relative">
+          <img
+            src={event.event_image}
+            alt={event.event_title}
+            className="h-[400px] w-full object-cover"
+          />
+          <Link
+            to="/"
+            className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm"
+            aria-label="Go back"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              {tag}
-            </span>
-          ))}
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </Link>
+          <button
+            className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm"
+            aria-label="Share"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+          </button>
         </div>
 
-        <h1 className="mb-1 text-4xl font-bold">{event.event_title}</h1>
-        {event.event_sub_title && (
-          <p className="mb-4 text-lg text-gray-400">{event.event_sub_title}</p>
-        )}
-        <p className="mb-8 text-gray-300">{event.event_description}</p>
-
-        <div className="mb-8 grid grid-cols-2 gap-4">
-          <div className="rounded-lg border border-gray-700 p-4">
-            <p className="mb-1 text-xs text-gray-500">Date</p>
-            <p className="font-medium">{event.event_date}</p>
-          </div>
-          <div className="rounded-lg border border-gray-700 p-4">
-            <p className="mb-1 text-xs text-gray-500">Time</p>
-            <p className="font-medium">
-              {event.starts_at} – {event.ends_at}
+        {/* Content */}
+        <div className="px-5 pt-6 pb-8">
+          {/* Title */}
+          <h1 className="text-4xl font-bold uppercase leading-tight">
+            {event.event_title}
+          </h1>
+          {event.event_sub_title && (
+            <p className="mt-1 text-sm uppercase tracking-wide text-gray-300">
+              {event.event_sub_title}
             </p>
-          </div>
-          <div className="rounded-lg border border-gray-700 p-4">
-            <p className="mb-1 text-xs text-gray-500">Venue</p>
-            <p className="font-medium">{event.event_location.venue}</p>
-            <p className="text-sm text-gray-400">
-              {event.event_location.address},{' '}
-              {event.event_location.neighborhood}
-            </p>
-          </div>
-          <div className="rounded-lg border border-gray-700 p-4">
-            <p className="mb-1 text-xs text-gray-500">Artist</p>
-            <p className="font-medium">{event.principal_artist}</p>
-          </div>
-        </div>
+          )}
 
-        <div className="mb-8 rounded-lg border border-gray-700 p-4">
-          <div className="mb-3 flex items-end justify-between">
-            <div>
-              <p className="mb-1 text-xs text-gray-500">Price</p>
-              {event.current_discount > 0 ? (
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold">
-                    ${event.discounted_price.toLocaleString()}
-                  </span>
-                  <span className="text-sm text-gray-500 line-through">
-                    ${event.price.toLocaleString()}
-                  </span>
-                  <span className="rounded bg-green-900 px-2 py-0.5 text-xs text-green-300">
-                    -{event.current_discount}%
-                  </span>
-                </div>
-              ) : (
-                <span className="text-2xl font-bold">
-                  ${event.price.toLocaleString()}
-                </span>
-              )}
+          {/* Tickets Available Badge */}
+          <div className="mt-5">
+            <div className="rounded-lg border text-black border-white/20 bg-white py-3 text-center text-sm font-semibold uppercase tracking-wider">
+              {available} Tickets Available
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-400">
-                {available} tickets left
+          </div>
+
+          {/* Location */}
+          <div className="mt-6 flex items-start gap-3">
+            <svg
+              className="mt-0.5 shrink-0"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold uppercase">
+                {event.event_location.venue}
+              </p>
+              <p className="text-sm uppercase text-gray-400">
+                {event.event_location.address}, {event.event_location.city}
               </p>
             </div>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-gray-800">
-            <div
-              className="h-full rounded-full bg-purple-600"
-              style={{ width: `${soldPercent}%` }}
-            />
-          </div>
-          <p className="mt-1 text-right text-xs text-gray-500">
-            {soldPercent}% sold
-          </p>
-        </div>
 
+          {/* Duration & Genre */}
+          <div className="mt-4 flex items-start gap-3">
+            <svg
+              className="mt-0.5 shrink-0"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold uppercase">
+                Duration: {duration} min
+              </p>
+              <p className="text-sm uppercase text-gray-400">
+                Genre: {event.category}
+              </p>
+            </div>
+          </div>
+
+          {/* Separator */}
+          <div className="my-8 border-t border-dashed border-gray-600" />
+
+          {/* About the show */}
+          <h2 className="mb-3 text-lg font-semibold">About the show</h2>
+          <p className="text-sm leading-relaxed text-gray-300">
+            {event.event_description}
+          </p>
+
+          {/* Separator */}
+          <div className="my-8 border-t border-dashed border-gray-600" />
+        </div>
+      </div>
+      {/* CTA Button */}
+      <div className="px-5 mt-4 pb-8">
         <Link
-          to="/checkout"
-          className="block w-full rounded-lg bg-white py-3 text-center font-semibold text-black transition hover:bg-gray-200"
+          to={`/checkout/${event.id}`}
+          className="block w-full rounded-full bg-[#D6F500] py-4 text-center text-lg font-bold uppercase text-black transition hover:bg-[#c2e000]"
         >
-          Buy Tickets
+          I&apos;m in
         </Link>
       </div>
     </div>

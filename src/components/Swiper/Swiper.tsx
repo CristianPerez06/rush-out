@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ContainerSvg from './ContainerSvg'
 import dottedLineSvg from './assets/dotted-line.svg'
-import eventImage1 from './assets/event-image-1.png'
-import eventImage2 from './assets/event-image-2.jpg'
-import eventImage3 from './assets/event-image-3.jpg'
-
+import { mockEvents } from '../../data/events'
+import { formatPrice } from '../../utilis'
+import { useNavigate } from 'react-router-dom'
 
 interface SwiperProps {
   width?: number
@@ -22,7 +21,20 @@ const COLORS = [
   '#85C1E2',
 ]
 
-const CONTENT = [
+const CONTENT = mockEvents.map(event => ({
+  id: event.id,
+  timing: event.starts_at,
+  startsIn: event.starts_at,
+  distance: '20 min away',
+  title: event.event_title,
+  venue: event.event_location.venue,
+  image: event.event_image,
+  originalPrice: formatPrice(event.price),
+  discount: `${event.current_discount}% off`,
+  finalPrice: formatPrice(event.discounted_price),
+}))
+
+/* const CONTENT = [
   {
     id: 1,
     timing: 'Fits before your 9 pm dinner WITH JOHN',
@@ -62,9 +74,9 @@ const CONTENT = [
     finalPrice: '$36,000',
     cta: "I'M IN",
   },
-]
+] */
 
-const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
+const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
@@ -73,15 +85,21 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const dragStartRef = useRef(0)
   const dragCurrentRef = useRef(0)
+  const navigate = useNavigate()
 
   const currentContent = CONTENT[currentIndex]
   const nextIndex = (currentIndex + 1) % CONTENT.length
   const afterNextIndex = (currentIndex + 2) % CONTENT.length
 
   // Colors tied to card IDs (id 1 = COLORS[0], id 2 = COLORS[1], etc.)
-  const card1Color = COLORS[(currentContent.id - 1) % COLORS.length]
-  const card2Color = COLORS[(CONTENT[nextIndex].id - 1) % COLORS.length]
-  const card3Color = COLORS[(CONTENT[afterNextIndex].id - 1) % COLORS.length]
+  const card1Color =
+    COLORS[(Number(currentContent.id.split('_')[1]) - 1) % COLORS.length]
+  const card2Color =
+    COLORS[(Number(CONTENT[nextIndex].id.split('_')[1]) - 1) % COLORS.length]
+  const card3Color =
+    COLORS[
+      (Number(CONTENT[afterNextIndex].id.split('_')[1]) - 1) % COLORS.length
+    ]
 
   const card2Width = width - 30
   const card3Width = card2Width - 30
@@ -92,40 +110,47 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
   const dragOffset = isDragging || isAnimating ? currentX - startX : 0
   const dragProgress = Math.abs(dragOffset) / width // 0 to 1
   const rotation = dragOffset * 0.15 // Rotation in degrees
-  const opacity = isDragging || isAnimating ? Math.max(0, 1 - dragProgress * 1.2) : 1
-  const scale = isDragging || isAnimating ? Math.max(0.7, 1 - dragProgress * 0.3) : 1
+  const opacity =
+    isDragging || isAnimating ? Math.max(0, 1 - dragProgress * 1.2) : 1
+  const scale =
+    isDragging || isAnimating ? Math.max(0.7, 1 - dragProgress * 0.3) : 1
 
-  const handleSwipeEnd = useCallback((start: number, current: number) => {
-    const diff = start - current
+  const handleSwipeEnd = useCallback(
+    (start: number, current: number) => {
+      const diff = start - current
 
-    if (Math.abs(diff) > SWIPE_THRESHOLD) {
-      setIsDragging(false)
-      setIsAnimating(true)
+      if (Math.abs(diff) > SWIPE_THRESHOLD) {
+        setIsDragging(false)
+        setIsAnimating(true)
 
-      // Set final position for exit animation
-      const exitDirection = diff > 0 ? 1 : -1
-      setCurrentX(start + exitDirection * width * 2)
+        // Set final position for exit animation
+        const exitDirection = diff > 0 ? 1 : -1
+        setCurrentX(start + exitDirection * width * 2)
 
-      // Animate card out, then change index
-      setTimeout(() => {
-        if (diff > 0) {
-          // Swipe left - next item
-          setCurrentIndex((prev) => (prev + 1) % CONTENT.length)
-        } else {
-          // Swipe right - previous item
-          setCurrentIndex((prev) => (prev - 1 + CONTENT.length) % CONTENT.length)
-        }
+        // Animate card out, then change index
+        setTimeout(() => {
+          if (diff > 0) {
+            // Swipe left - next item
+            setCurrentIndex(prev => (prev + 1) % CONTENT.length)
+          } else {
+            // Swipe right - previous item
+            setCurrentIndex(
+              prev => (prev - 1 + CONTENT.length) % CONTENT.length
+            )
+          }
 
-        setIsAnimating(false)
+          setIsAnimating(false)
+          setStartX(0)
+          setCurrentX(0)
+        }, 200)
+      } else {
+        setIsDragging(false)
         setStartX(0)
         setCurrentX(0)
-      }, 200)
-    } else {
-      setIsDragging(false)
-      setStartX(0)
-      setCurrentX(0)
-    }
-  }, [width])
+      }
+    },
+    [width]
+  )
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true)
@@ -187,7 +212,11 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
       <div
         ref={containerRef}
         className="relative select-none"
-        style={{ width: `${width}px`, height: `${height}px`, touchAction: 'pan-y' }}
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+          touchAction: 'pan-y',
+        }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -223,11 +252,14 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
           style={{
             width: `${width}px`,
             height: `${height}px`,
-            transform: isDragging || isAnimating
-              ? `translateX(${dragOffset}px) rotate(${rotation}deg) scale(${scale})`
-              : 'translateX(0) rotate(0deg) scale(1)',
+            transform:
+              isDragging || isAnimating
+                ? `translateX(${dragOffset}px) rotate(${rotation}deg) scale(${scale})`
+                : 'translateX(0) rotate(0deg) scale(1)',
             opacity: opacity,
-            transition: isDragging ? 'none' : 'transform 0.2s ease-out, opacity 0.2s ease-out',
+            transition: isDragging
+              ? 'none'
+              : 'transform 0.2s ease-out, opacity 0.2s ease-out',
             transformOrigin: 'center center',
           }}
         >
@@ -312,10 +344,16 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
                 }}
                 data-node-id="104:304"
               >
-                <p style={{ position: 'relative', flexShrink: 0 }} data-node-id="104:305">
+                <p
+                  style={{ position: 'relative', flexShrink: 0 }}
+                  data-node-id="104:305"
+                >
                   {currentContent.startsIn}
                 </p>
-                <p style={{ position: 'relative', flexShrink: 0 }} data-node-id="104:306">
+                <p
+                  style={{ position: 'relative', flexShrink: 0 }}
+                  data-node-id="104:306"
+                >
                   {currentContent.distance}
                 </p>
               </div>
@@ -386,50 +424,34 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
           </div>
 
           {/* Footer section */}
-          <div
-            className="flex items-end justify-between relative shrink-0 w-full p-5"
-          >
-            <div
-              className="flex flex-col items-start justify-center relative shrink-0"
-            >
-              <div
-                className="flex items-center relative shrink-0 gap-[6.61px]"
-              >
-                <p
-                  className="relative shrink-0 text-white uppercase line-through font-['IBM_Plex_Sans:Medium',sans-serif] text-[13.547px] leading-normal not-italic tracking-[0.4064px]"
-                >
+          <div className="flex items-end justify-between relative shrink-0 w-full p-5">
+            <div className="flex flex-col items-start justify-center relative shrink-0">
+              <div className="flex items-center relative shrink-0 gap-[6.61px]">
+                <p className="relative shrink-0 text-white uppercase line-through font-['IBM_Plex_Sans:Medium',sans-serif] text-[13.547px] leading-normal not-italic tracking-[0.4064px]">
                   {currentContent.originalPrice}
                 </p>
-                <div
-                  className="bg-white/20 flex items-center justify-center relative shrink-0 px-[6.61px] py-[3.305px]"
-                >
-                  <p
-                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[11.853px] text-white tracking-[0.3556px] uppercase"
-                  >
+                <div className="bg-white/20 flex items-center justify-center relative shrink-0 px-[6.61px] py-[3.305px]">
+                  <p className="font-['IBM_Plex_Sans:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[11.853px] text-white tracking-[0.3556px] uppercase">
                     {currentContent.discount}
                   </p>
                 </div>
               </div>
-              <p
-                className="font-['IBM_Plex_Sans:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[20.32px] text-white uppercase"
-              >
+              <p className="font-['IBM_Plex_Sans:SemiBold',sans-serif] leading-normal not-italic relative shrink-0 text-[20.32px] text-white uppercase">
                 {currentContent.finalPrice}
               </p>
             </div>
-            <div className="flex flex-row items-end self-stretch">
-              <div
+            <div className="flex flex-row items-end self-stretch ">
+              <button
+                onClick={() => navigate(`/event/${currentContent.id}`)}
                 className="bg-white flex h-full items-center justify-center relative shrink-0 px-[9.914px] py-[6.61px] w-[74.506px]"
               >
-                <p
-                  className="font-['IBM_Plex_Sans:Medium',sans-serif] leading-normal not-italic relative shrink-0 text-[13.547px] text-black uppercase"
-                >
-                  {currentContent.cta}
+                <p className="font-['IBM_Plex_Sans:Medium',sans-serif] leading-normal not-italic relative shrink-0 text-[13.547px] text-black uppercase">
+                  I&apos;M IN
                 </p>
-              </div>
+              </button>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   )

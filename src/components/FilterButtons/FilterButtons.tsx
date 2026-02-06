@@ -1,218 +1,53 @@
+const buttons = [
+  {
+    topText: 'I want',
+    bottomText: 'to laugh',
+    bg: '#6B5080',
+  },
+  {
+    topText: "I'm ready",
+    bottomText: 'to cry',
+    bg: '#253253',
+  },
+  {
+    topText: 'Plan',
+    bottomText: 'my date',
+    bg: '#9FABD8',
+  },
+  {
+    topText: 'Take me',
+    bottomText: 'somewhere',
+    bg: '#2D7A65',
+  },
+]
+
 const FilterButtons = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-        alignItems: 'flex-end',
-        left: '23px',
-        top: '1049px',
-        width: '336px',
-      }}
-      data-node-id="104:383"
-    >
-      <p
-        style={{
-          fontFamily: "'Inter:Semi_Bold', sans-serif",
-          fontWeight: 600,
-          lineHeight: 'normal',
-          fontStyle: 'normal',
-          position: 'relative',
-          flexShrink: 0,
-          fontSize: '17px',
-          color: 'white',
-          textTransform: 'uppercase',
-          width: '100%',
-          whiteSpace: 'pre-wrap',
-        }}
-        data-node-id="104:384"
-      >
-        Other things happening tonight
+    <div className="flex flex-col gap-2.5 w-full p-4 max-w-[400px] mb-8">
+      <p className="text-white text-[17px] font-semibold uppercase font-['Inter'] w-full">
+        What are you in the mood for?
       </p>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-          alignItems: 'flex-start',
-          position: 'relative',
-          flexShrink: 0,
-          width: '100%',
-        }}
-        data-node-id="104:385"
-      >
-        <div
-          style={{
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center',
-            position: 'relative',
-            flexShrink: 0,
-            width: '100%',
-          }}
-          data-node-id="104:386"
-        >
-          <div
-            style={{
-              border: '1px solid #9fabde',
-              display: 'flex',
-              height: '99px',
-              alignItems: 'center',
-              paddingLeft: '18px',
-              paddingRight: '18px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              position: 'relative',
-              borderRadius: '8px',
-              flexShrink: 0,
-              width: '164px',
-            }}
-            data-node-id="104:387"
+      <div className="grid grid-cols-2 gap-2 w-full">
+        {buttons.map(btn => (
+          <button
+            key={btn.bottomText}
+            className="flex items-end rounded-lg px-4 py-3 h-[99px] cursor-pointer border-none text-left"
+            style={{ backgroundColor: btn.bg }}
           >
-            <div
-              style={{
-                fontFamily: "'Inter:Semi_Bold', sans-serif",
-                fontWeight: 600,
-                lineHeight: 'normal',
-                fontStyle: 'normal',
-                position: 'relative',
-                flexShrink: 0,
-                color: '#9fabde',
-                fontSize: '16px',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-              data-node-id="104:388"
-            >
-              <p style={{ marginBottom: 0 }}>I want </p>
-              <p>to laugh</p>
+            <div className="flex flex-col uppercase text-white/80 text-center justify-center items-center h-full w-full">
+              <span className="text-sm font-semibold font-['Inter'] leading-tight">
+                {btn.topText}
+              </span>
+              <span className="text-[26px] font-bold font-['Inter'] leading-none tracking-tight text-white">
+                {btn.bottomText}
+              </span>
             </div>
-          </div>
-          <div
-            style={{
-              border: '1px solid #9fabde',
-              display: 'flex',
-              height: '99px',
-              alignItems: 'center',
-              paddingLeft: '18px',
-              paddingRight: '18px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              position: 'relative',
-              borderRadius: '8px',
-              flexShrink: 0,
-              width: '164px',
-            }}
-            data-node-id="104:389"
-          >
-            <div
-              style={{
-                fontFamily: "'Inter:Semi_Bold', sans-serif",
-                fontWeight: 600,
-                lineHeight: 'normal',
-                fontStyle: 'normal',
-                position: 'relative',
-                flexShrink: 0,
-                color: '#9fabde',
-                fontSize: '16px',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-              data-node-id="104:390"
-            >
-              <p style={{ marginBottom: 0 }}>{"I'm ready"}</p>
-              <p>to cry</p>
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center',
-            position: 'relative',
-            flexShrink: 0,
-            width: '100%',
-          }}
-          data-node-id="104:391"
-        >
-          <div
-            style={{
-              border: '1px solid #9fabde',
-              display: 'flex',
-              height: '99px',
-              alignItems: 'center',
-              paddingLeft: '18px',
-              paddingRight: '18px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              position: 'relative',
-              borderRadius: '8px',
-              flexShrink: 0,
-              width: '164px',
-            }}
-            data-node-id="104:392"
-          >
-            <div
-              style={{
-                fontFamily: "'Inter:Semi_Bold', sans-serif",
-                fontWeight: 600,
-                lineHeight: 'normal',
-                fontStyle: 'normal',
-                position: 'relative',
-                flexShrink: 0,
-                color: '#9fabde',
-                fontSize: '16px',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-              data-node-id="104:393"
-            >
-              <p style={{ marginBottom: 0 }}>Resolve </p>
-              <p>my date</p>
-            </div>
-          </div>
-          <div
-            style={{
-              border: '1px solid #9fabde',
-              display: 'flex',
-              height: '99px',
-              alignItems: 'center',
-              paddingLeft: '18px',
-              paddingRight: '18px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              position: 'relative',
-              borderRadius: '8px',
-              flexShrink: 0,
-              width: '164px',
-            }}
-            data-node-id="104:394"
-          >
-            <div
-              style={{
-                fontFamily: "'Inter:Semi_Bold', sans-serif",
-                fontWeight: 600,
-                lineHeight: 'normal',
-                fontStyle: 'normal',
-                position: 'relative',
-                flexShrink: 0,
-                color: '#9fabde',
-                fontSize: '16px',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-              data-node-id="104:395"
-            >
-              <p style={{ marginBottom: 0 }}>take me </p>
-              <p>somewhere</p>
-            </div>
-          </div>
-        </div>
+          </button>
+        ))}
       </div>
+      <div className="h-8"></div>
     </div>
-  );
-};
+  )
+}
 
-export default FilterButtons;
+export default FilterButtons

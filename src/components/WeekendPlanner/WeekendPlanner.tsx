@@ -4,7 +4,7 @@ import TonightsPick from '../TonightsPick'
 
 // Image assets from Figma
 import imgF15E36610Edbf10101B9Adda6F5D07Ba1 from '../../assets/5390659823fabdebd8931f08687d3530ebbb52ae.png'
-import imgA46733B363D658Bf409588Ee7F41458D1 from '../../assets/f57be7d3bb340b5adb6e1272658124bcd38be27d.png'
+
 import imgVector from '../../assets/5476204c7255fb6b2cf1744b23da45531f9ec294.svg'
 import imgEllipse2 from '../../assets/b99c9f0519591c0e054861198990e2e3a31105e7.svg'
 import imgLine8 from '../../assets/8101a426a381d8b3910a0339db39b766e49c0f5c.svg'
@@ -14,23 +14,15 @@ import imgLine9 from '../../assets/d2af142afddf1b573b112863bc41d4255e977a18.svg'
 import imgVector2 from '../../assets/908349e073a4ab5f9586ca48eff588e088063ae2.svg'
 import imgEllipse4 from '../../assets/321c17304a3059e8f89db21c4c964ecd05486284.svg'
 import imgLine10 from '../../assets/32126112b53a51fdc27d6958f7ef435b4ddff3f3.svg'
-import imgLine11 from '../../assets/1361086a8f0f419f1cdbdeac9fbe6653810af24b.svg'
 
 const WeekendPlanner = () => {
   return (
-
-    <div style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '16px',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
+    <div className="flex flex-col gap-4 items-center justify-center">
       {/* Tonight's pick section */}
       <TonightsPick
-        imgF15E36610Edbf10101B9Adda6F5D07Ba1={imgF15E36610Edbf10101B9Adda6F5D07Ba1}
+        imgF15E36610Edbf10101B9Adda6F5D07Ba1={
+          imgF15E36610Edbf10101B9Adda6F5D07Ba1
+        }
         imgVector={imgVector}
         imgEllipse2={imgEllipse2}
         imgLine8={imgLine8}
@@ -43,15 +35,12 @@ const WeekendPlanner = () => {
       />
 
       {/* Other things happening tonight - Horizontal cards */}
-      <OtherThingsTonight
-        imgA46733B363D658Bf409588Ee7F41458D1={imgA46733B363D658Bf409588Ee7F41458D1}
-        imgLine11={imgLine11}
-      />
+      <OtherThingsTonight />
 
       {/* Filter buttons section */}
       <FilterButtons />
     </div>
-  );
-};
+  )
+}
 
-export default WeekendPlanner;
+export default WeekendPlanner

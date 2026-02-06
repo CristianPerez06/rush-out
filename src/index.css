@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@theme {
+  --color-accent: #d4ff00;
+  --font-display: Impact, 'Arial Black', sans-serif;
 }

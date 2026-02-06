@@ -5,6 +5,7 @@ import Profile from './pages/Profile'
 import Event from './pages/Event'
 import Checkout from './pages/Checkout'
 import Intro from './pages/Intro'
+import Success from './pages/Success'
 
 const RootOrIntro = () => {
   const hasSeenIntro = sessionStorage.getItem('rushOutHasSeenIntro')
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/event/:id" element={<Event />} />
         <Route path="/checkout/:id" element={<Checkout />} />
         <Route path="/intro" element={<Intro />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   )

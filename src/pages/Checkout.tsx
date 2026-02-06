@@ -50,6 +50,13 @@ const Checkout = () => {
   if (step === 1) {
     return (
       <div className="relative flex min-h-screen flex-col bg-black text-white">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="absolute left-4 top-4 text-sm uppercase text-white/80"
+        >
+          Back
+        </button>
         <h1
           className="text-center uppercase"
           style={{

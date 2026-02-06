@@ -29,14 +29,13 @@ const Success = () => {
         <p
           className="mt-8 text-center uppercase"
           style={{
-            fontFamily: "'IBM Plex Sans Condensed', sans-serif",
             fontWeight: 500,
             fontSize: '22.4728px',
             lineHeight: '29px',
             letterSpacing: '0.05em',
           }}
         >
-          The night's waiting.
+          The night&apos;s waiting.
         </p>
       </div>
       <div className="pb-2">
@@ -44,7 +43,6 @@ const Success = () => {
           to="/"
           className="flex h-[68px] w-full items-center justify-center rounded-[50px] bg-black uppercase text-white"
           style={{
-            fontFamily: "'Inter', sans-serif",
             fontWeight: 600,
             fontSize: '18px',
             lineHeight: '22px',

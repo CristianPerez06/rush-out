@@ -34,48 +34,6 @@ const CONTENT = mockEvents.map(event => ({
   finalPrice: formatPrice(event.discounted_price),
 }))
 
-/* const CONTENT = [
-  {
-    id: 1,
-    timing: 'Fits before your 9 pm dinner WITH JOHN',
-    startsIn: 'Starts in 2h 14m',
-    distance: '20 min away',
-    title: 'Baco polaco',
-    venue: 'Teatro Sarmiento',
-    image: eventImage1,
-    originalPrice: '$40,000',
-    discount: '50% off',
-    finalPrice: '$20,000',
-    cta: "I'M IN",
-  },
-  {
-    id: 2,
-    timing: 'Perfect for your 7 pm drinks WITH MARIA',
-    startsIn: 'Starts in 45m',
-    distance: '15 min away',
-    title: 'Jazz Night Live',
-    venue: 'Blue Note Club',
-    image: eventImage2,
-    originalPrice: '$35,000',
-    discount: '30% off',
-    finalPrice: '$24,500',
-    cta: "I'M IN",
-  },
-  {
-    id: 3,
-    timing: 'Great after your 6 pm meeting WITH CARLOS',
-    startsIn: 'Starts in 1h 30m',
-    distance: '10 min away',
-    title: 'Sushi Masterclass',
-    venue: 'Nobu Restaurant',
-    image: eventImage3,
-    originalPrice: '$60,000',
-    discount: '40% off',
-    finalPrice: '$36,000',
-    cta: "I'M IN",
-  },
-] */
-
 const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -86,6 +44,8 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
   const dragStartRef = useRef(0)
   const dragCurrentRef = useRef(0)
   const navigate = useNavigate()
+
+  const closeEvent = 'Fits before your 9pm dinner with John'
 
   const currentContent = CONTENT[currentIndex]
   const nextIndex = (currentIndex + 1) % CONTENT.length
@@ -98,7 +58,7 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
     COLORS[(Number(CONTENT[nextIndex].id.split('_')[1]) - 1) % COLORS.length]
   const card3Color =
     COLORS[
-      (Number(CONTENT[afterNextIndex].id.split('_')[1]) - 1) % COLORS.length
+    (Number(CONTENT[afterNextIndex].id.split('_')[1]) - 1) % COLORS.length
     ]
 
   const card2Width = width - 30
@@ -294,7 +254,6 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
             >
               <p
                 style={{
-                  fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                   lineHeight: 'normal',
                   fontStyle: 'normal',
                   position: 'relative',
@@ -305,7 +264,7 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
                 }}
                 data-node-id="104:300"
               >
-                {currentContent.timing}
+                {currentIndex === 0 ? closeEvent : `${currentContent.timing}`}
               </p>
               <div
                 style={{
@@ -334,7 +293,6 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
               <div
                 style={{
                   display: 'flex',
-                  fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   position: 'relative',
@@ -348,7 +306,7 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
                   style={{ position: 'relative', flexShrink: 0 }}
                   data-node-id="104:305"
                 >
-                  {currentContent.startsIn}
+                  {currentContent.startsIn} HS
                 </p>
                 <p
                   style={{ position: 'relative', flexShrink: 0 }}
@@ -371,7 +329,6 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
               >
                 <p
                   style={{
-                    fontFamily: "'Inter:Semi_Bold', sans-serif",
                     fontWeight: 600,
                     position: 'relative',
                     flexShrink: 0,
@@ -384,7 +341,6 @@ const Swiper = ({ width = 360, height = 450 }: SwiperProps) => {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                     position: 'relative',
                     flexShrink: 0,
                     fontSize: '14px',

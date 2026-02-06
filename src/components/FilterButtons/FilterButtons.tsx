@@ -24,7 +24,7 @@ const buttons = [
 const FilterButtons = () => {
   return (
     <div className="flex flex-col gap-2.5 w-full p-4 max-w-[400px] mb-8">
-      <p className="text-white text-[17px] font-semibold uppercase font-['Inter'] w-full">
+      <p className="text-white text-xl font-bold uppercase">
         What are you in the mood for?
       </p>
       <div className="grid grid-cols-2 gap-2 w-full">

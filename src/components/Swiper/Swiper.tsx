@@ -183,7 +183,7 @@ const Swiper = ({ width = 300, height = 450 }: SwiperProps) => {
   }, [isDragging, handleSwipeEnd])
 
   return (
-    <div className="w-full h-full flex justify-center mt-20">
+    <div className="w-full h-full flex justify-center mt-16">
       <div
         ref={containerRef}
         className="relative select-none"

@@ -49,13 +49,14 @@ const Checkout = () => {
 
   if (step === 1) {
     return (
-      <div className="relative flex min-h-screen flex-col bg-black text-white">
+      <div className="relative flex min-h-screen flex-col bg-black pt-14 text-white">
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="absolute left-4 top-4 text-sm uppercase text-white/80"
+          className="absolute left-5 top-6 text-sm uppercase text-white/80"
+          aria-label="Go back"
         >
-          Back
+          &larr; Back
         </button>
         <h1
           className="text-center uppercase"
@@ -228,7 +229,15 @@ const Checkout = () => {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-black text-white">
+    <div className="relative flex min-h-screen flex-col bg-black pt-14 text-white">
+      <button
+        type="button"
+        onClick={() => setStep(1)}
+        className="absolute left-5 top-6 text-sm uppercase text-white/80"
+        aria-label="Go back"
+      >
+        &larr; Back
+      </button>
       <h1
         className="text-center uppercase"
         style={{
@@ -241,13 +250,6 @@ const Checkout = () => {
       >
         You have a plan
       </h1>
-      <button
-        type="button"
-        onClick={() => setStep(1)}
-        className="mt-2 self-center text-sm uppercase text-white/80"
-      >
-        Back
-      </button>
       <div
         className="mx-auto mt-8 w-full max-w-[325px] rounded-2xl p-5"
         style={{ background: '#2A2A2A' }}

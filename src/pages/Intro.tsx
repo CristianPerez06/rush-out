@@ -10,7 +10,10 @@ const Intro = () => {
         autoPlay
         muted
         playsInline
-        onEnded={() => navigate('/')}
+        onEnded={() => {
+          sessionStorage.setItem('rushOutHasSeenIntro', '1')
+          navigate('/')
+        }}
         className="max-h-[70vh] w-full max-w-4xl object-contain"
       />
     </div>

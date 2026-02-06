@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { OnboardingProvider } from './context/OnboardingContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Event from './pages/Event'
 import Checkout from './pages/Checkout'
 import Intro from './pages/Intro'
+import { OnboardingProvider } from './context/OnboardingContext'
 
 const App = () => {
   return (

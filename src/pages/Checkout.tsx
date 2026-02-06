@@ -61,14 +61,13 @@ const Checkout = () => {
         <h1
           className="text-center uppercase"
           style={{
-            fontFamily: "'Inter', sans-serif",
             fontWeight: 400,
             fontSize: '69.6809px',
             lineHeight: '77px',
             letterSpacing: '0.01em',
           }}
         >
-          You're going tonight
+          You&apos;re going tonight
         </h1>
         <div
           className="flex flex-col gap-1 px-[26px] pt-8"
@@ -77,7 +76,6 @@ const Checkout = () => {
           <p
             className="uppercase"
             style={{
-              fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: '20px',
               lineHeight: '24px',
@@ -89,7 +87,6 @@ const Checkout = () => {
           <p
             className="uppercase"
             style={{
-              fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: '26px',
               lineHeight: '31px',
@@ -100,7 +97,6 @@ const Checkout = () => {
           <p
             className="uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 500,
               fontSize: '14px',
               lineHeight: '18px',
@@ -119,7 +115,6 @@ const Checkout = () => {
                 <p
                   className="uppercase line-through"
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
                     fontWeight: 500,
                     fontSize: '16px',
                     lineHeight: '21px',
@@ -132,7 +127,6 @@ const Checkout = () => {
                   className="flex items-center justify-center px-2 py-0.5 uppercase"
                   style={{
                     background: '#074EDA',
-                    fontFamily: "'IBM Plex Sans', sans-serif",
                     fontWeight: 600,
                     fontSize: '16px',
                     lineHeight: '21px',
@@ -146,7 +140,6 @@ const Checkout = () => {
           <p
             className="mt-1 text-center uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 600,
               fontSize: '34px',
               lineHeight: '44px',
@@ -160,7 +153,6 @@ const Checkout = () => {
               onClick={() => setQuantity(q => Math.max(1, q - 1))}
               className="flex h-12 w-12 items-center justify-center text-white"
               style={{
-                fontFamily: "'Inter', sans-serif",
                 fontWeight: 300,
                 fontSize: '47px',
                 lineHeight: '57px',
@@ -172,7 +164,6 @@ const Checkout = () => {
             <div
               className="flex h-[100px] w-[100px] items-center justify-center rounded-lg bg-white text-black"
               style={{
-                fontFamily: "'Contrail One', sans-serif",
                 fontWeight: 400,
                 fontSize: '69.6809px',
                 lineHeight: '87px',
@@ -186,7 +177,6 @@ const Checkout = () => {
               onClick={() => setQuantity(q => Math.min(available, q + 1))}
               className="flex h-12 w-12 items-center justify-center text-white"
               style={{
-                fontFamily: "'Inter', sans-serif",
                 fontWeight: 300,
                 fontSize: '47px',
                 lineHeight: '57px',
@@ -199,7 +189,6 @@ const Checkout = () => {
           <p
             className="mt-4 text-center uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 500,
               fontSize: '16px',
               lineHeight: '21px',
@@ -215,7 +204,6 @@ const Checkout = () => {
             className="flex h-[68px] w-full max-w-[323px] items-center justify-center rounded-[50px] uppercase text-black"
             style={{
               background: '#E9FF3E',
-              fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: '18px',
               lineHeight: '22px',
@@ -241,7 +229,6 @@ const Checkout = () => {
       <h1
         className="text-center uppercase"
         style={{
-          fontFamily: "'Inter', sans-serif",
           fontWeight: 400,
           fontSize: '69.6809px',
           lineHeight: '77px',
@@ -258,18 +245,16 @@ const Checkout = () => {
           <p
             className="uppercase"
             style={{
-              fontFamily: "'Inter', sans-serif",
               fontWeight: 600,
               fontSize: '20px',
               lineHeight: '24px',
             }}
           >
-            Tonight's summary
+            Tonight&apos;s summary
           </p>
           <p
             className="uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 500,
               fontSize: '14px',
               lineHeight: '18px',
@@ -280,7 +265,6 @@ const Checkout = () => {
           <div className="flex justify-between uppercase">
             <span
               style={{
-                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
                 fontSize: '20px',
                 lineHeight: '24px',
@@ -290,7 +274,6 @@ const Checkout = () => {
             </span>
             <span
               style={{
-                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
                 fontSize: '20px',
                 lineHeight: '24px',
@@ -302,7 +285,6 @@ const Checkout = () => {
           <p
             className="uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 500,
               fontSize: '14px',
               lineHeight: '18px',
@@ -314,7 +296,6 @@ const Checkout = () => {
           <div className="flex justify-between uppercase">
             <span
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
                 fontWeight: 500,
                 fontSize: '14px',
                 lineHeight: '18px',
@@ -324,7 +305,6 @@ const Checkout = () => {
             </span>
             <span
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
                 fontWeight: 500,
                 fontSize: '14px',
                 lineHeight: '18px',
@@ -336,7 +316,6 @@ const Checkout = () => {
           <div className="flex justify-between uppercase">
             <span
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
                 fontWeight: 500,
                 fontSize: '14px',
                 lineHeight: '18px',
@@ -346,7 +325,6 @@ const Checkout = () => {
             </span>
             <span
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
                 fontWeight: 500,
                 fontSize: '14px',
                 lineHeight: '18px',
@@ -359,7 +337,6 @@ const Checkout = () => {
           <div className="flex justify-between uppercase">
             <span
               style={{
-                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
                 fontSize: '20px',
                 lineHeight: '24px',
@@ -369,7 +346,6 @@ const Checkout = () => {
             </span>
             <span
               style={{
-                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
                 fontSize: '20px',
                 lineHeight: '24px',
@@ -385,7 +361,6 @@ const Checkout = () => {
           <span
             className="uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 400,
               fontSize: '16px',
               lineHeight: '21px',
@@ -398,7 +373,6 @@ const Checkout = () => {
           <span
             className="uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 400,
               fontSize: '16px',
               lineHeight: '21px',
@@ -409,7 +383,6 @@ const Checkout = () => {
           <span
             className="uppercase"
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 600,
               fontSize: '16px',
               lineHeight: '21px',
@@ -426,7 +399,6 @@ const Checkout = () => {
           className="flex h-[68px] w-full max-w-[323px] items-center justify-center rounded-[50px] uppercase text-black"
           style={{
             background: '#E9FF3E',
-            fontFamily: "'Inter', sans-serif",
             fontWeight: 600,
             fontSize: '18px',
             lineHeight: '22px',

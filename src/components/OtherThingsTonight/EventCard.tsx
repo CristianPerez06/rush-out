@@ -82,7 +82,6 @@ export const EventCard = ({ event }: { event: Event }) => {
           >
             <p
               style={{
-                fontFamily: "'IBM_Plex_Sans:Regular', sans-serif",
                 position: 'relative',
                 flexShrink: 0,
               }}
@@ -91,7 +90,6 @@ export const EventCard = ({ event }: { event: Event }) => {
             </p>
             <p
               style={{
-                fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                 position: 'relative',
                 flexShrink: 0,
               }}
@@ -113,7 +111,6 @@ export const EventCard = ({ event }: { event: Event }) => {
           >
             <p
               style={{
-                fontFamily: "'Inter:Semi_Bold', sans-serif",
                 fontWeight: 600,
                 position: 'relative',
                 flexShrink: 0,
@@ -126,7 +123,6 @@ export const EventCard = ({ event }: { event: Event }) => {
             {event.event_sub_title && (
               <p
                 style={{
-                  fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                   position: 'relative',
                   flexShrink: 0,
                   fontSize: '14px',
@@ -193,7 +189,6 @@ export const EventCard = ({ event }: { event: Event }) => {
                   style={{
                     textDecorationSkipInk: 'none',
                     textDecorationStyle: 'solid',
-                    fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                     lineHeight: 'normal',
                     textDecorationLine: 'line-through',
                     fontStyle: 'normal',
@@ -220,7 +215,6 @@ export const EventCard = ({ event }: { event: Event }) => {
                 >
                   <p
                     style={{
-                      fontFamily: "'IBM_Plex_Sans:SemiBold', sans-serif",
                       lineHeight: 'normal',
                       fontStyle: 'normal',
                       position: 'relative',
@@ -238,7 +232,6 @@ export const EventCard = ({ event }: { event: Event }) => {
             )}
             <p
               style={{
-                fontFamily: "'IBM_Plex_Sans:SemiBold', sans-serif",
                 lineHeight: 'normal',
                 fontStyle: 'normal',
                 position: 'relative',
@@ -281,7 +274,6 @@ export const EventCard = ({ event }: { event: Event }) => {
             >
               <p
                 style={{
-                  fontFamily: "'IBM_Plex_Sans:Medium', sans-serif",
                   lineHeight: 'normal',
                   fontStyle: 'normal',
                   position: 'relative',

@@ -3,21 +3,26 @@ const buttons = [
     topText: 'I want',
     bottomText: 'to laugh',
     bg: '#6B5080',
+    color: "#D3DBFF",
   },
   {
     topText: "I'm ready",
     bottomText: 'to cry',
     bg: '#253253',
+    color: "#D3DBFF",
   },
   {
     topText: 'Plan',
     bottomText: 'my date',
     bg: '#9FABD8',
+    color: "#050505",
   },
   {
     topText: 'Take me',
     bottomText: 'somewhere',
     bg: '#2D7A65',
+    color: "#D3DBFF",
+
   },
 ]
 
@@ -34,11 +39,11 @@ const FilterButtons = () => {
             className="flex items-end rounded-lg px-4 py-3 h-[99px] cursor-pointer border-none text-left"
             style={{ backgroundColor: btn.bg }}
           >
-            <div className="flex flex-col uppercase text-white/80 text-center justify-center items-center h-full w-full">
-              <span className="text-sm font-semibold font-['Inter'] leading-tight">
+            <div className="flex flex-col uppercase text-center justify-center items-center h-full w-full">
+              <span className="text-sm font-semibold leading-tight" style={{ color: btn.color }}>
                 {btn.topText}
               </span>
-              <span className="text-[26px] font-bold font-['Inter'] leading-none tracking-tight text-white">
+              <span className="text-[26px] font-bold leading-none tracking-tight" style={{ color: btn.color }}>
                 {btn.bottomText}
               </span>
             </div>

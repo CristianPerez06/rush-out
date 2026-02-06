@@ -23,7 +23,7 @@ const COLORS = [
 
 const CONTENT = mockEvents.map(event => ({
   id: event.id,
-  timing: event.starts_at,
+  timing: event.event_sub_title,
   startsIn: event.starts_at,
   distance: '20 min away',
   title: event.event_title,
